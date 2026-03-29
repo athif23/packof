@@ -8,6 +8,7 @@ const cli: CAC = cac("foldpak");
 cli
   .option("-o, --output <file>", "Output zip file path")
   .option("--no-gitignore", "Ignore .gitignore rules")
+  .option("--ignore-file <file>", "Load ignore patterns from file (can be repeated)")
   .option("-i, --include <glob>", "Include files matching glob (can be repeated)")
   .option("-e, --exclude <glob>", "Exclude files matching glob (can be repeated)")
   .option("--verbose", "Show detailed output");
@@ -29,10 +30,17 @@ cli.command("[source]", "Directory to package (default: .)").action((source) => 
       ? [options.exclude] 
       : [];
 
+  const ignoreFiles = Array.isArray(options.ignoreFile)
+    ? options.ignoreFile as string[]
+    : options.ignoreFile
+      ? [options.ignoreFile]
+      : [];
+
   foldpak({
     source: resolvedSource,
     output: options.output as string | undefined,
     gitignore: options.gitignore as boolean ?? true,
+    ignoreFiles,
     include,
     exclude,
     verbose: options.verbose as boolean ?? false,

@@ -1,13 +1,14 @@
 import { statSync } from "node:fs";
 import { basename, resolve } from "node:path";
+import ignore from "ignore";
 import { PackOptions, PackResult } from "./types.js";
-import { loadGitignore } from "./load-gitignore.js";
+import { loadGitignore, loadCustomIgnoreFiles } from "./load-ignore.js";
 import { discoverFiles } from "./discover-files.js";
 import { filterFiles } from "./filter-files.js";
 import { writeZip } from "./write-zip.js";
 
 export async function foldpak(options: PackOptions): Promise<PackResult> {
-  const { source, output, gitignore, include, exclude, verbose } = options;
+  const { source, output, gitignore, ignoreFiles, include, exclude, verbose } = options;
 
   // Resolve and validate source
   const absoluteSource = resolve(source);
@@ -31,11 +32,32 @@ export async function foldpak(options: PackOptions): Promise<PackResult> {
     console.log(`Output: ${resolve(outputPath)}`);
   }
 
-  // Load gitignore if requested
-  const gitignoreIg = gitignore ? loadGitignore(absoluteSource) : null;
+  // Load ignore rules
+  const ig = ignore();
+  let loadedAnyIgnore = false;
 
-  if (verbose && gitignoreIg) {
-    console.log("Using .gitignore rules");
+  // Load .gitignore if requested
+  if (gitignore) {
+    const gitignoreIg = loadGitignore(absoluteSource);
+    if (gitignoreIg) {
+      ig.add(gitignoreIg);
+      loadedAnyIgnore = true;
+      if (verbose) {
+        console.log("Using .gitignore rules");
+      }
+    }
+  }
+
+  // Load custom ignore files
+  if (ignoreFiles.length > 0) {
+    const customIg = loadCustomIgnoreFiles(absoluteSource, ignoreFiles);
+    if (customIg) {
+      ig.add(customIg);
+      loadedAnyIgnore = true;
+      if (verbose) {
+        console.log(`Using custom ignore files: ${ignoreFiles.join(", ")}`);
+      }
+    }
   }
 
   if (verbose && include.length > 0) {
@@ -61,7 +83,7 @@ export async function foldpak(options: PackOptions): Promise<PackResult> {
   const filteredFiles = await filterFiles(
     allFiles,
     absoluteSource,
-    gitignoreIg,
+    loadedAnyIgnore ? ig : null,
     include,
     exclude,
   );
