@@ -1,5 +1,5 @@
 {
-  "name": "@athif/pack",
+  "name": "packof",
   "version": "1.0.0",
   "description": "A tiny CLI to package a folder into a zip archive",
   "keywords": [
@@ -10,19 +10,19 @@
     "compress",
     "gitignore"
   ],
-  "homepage": "https://github.com/athif23/pack-cli#readme",
+  "homepage": "https://github.com/athif23/packof#readme",
   "bugs": {
-    "url": "https://github.com/athif23/pack-cli/issues"
+    "url": "https://github.com/athif23/packof/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/athif23/pack-cli.git"
+    "url": "git+https://github.com/athif23/packof.git"
   },
   "license": "MIT",
   "author": "Athif",
   "type": "module",
   "bin": {
-    "pack": "./dist/cli.js"
+    "packof": "./dist/cli.js"
   },
   "files": [
     "dist/",

@@ -1,23 +1,23 @@
-# pack
+# packof
 
 A tiny CLI to package a folder into a zip archive with simple include, exclude, and `.gitignore` support.
 
 ## Install
 
 ```bash
-npm install -g @athif/pack
+npm install -g packof
 ```
 
 Or run directly with `npx`:
 
 ```bash
-npx tsx src/cli.ts .
+npx packof .
 ```
 
 ## Usage
 
 ```bash
-pack [source]
+packof [source]
 ```
 
 ### Options
@@ -32,25 +32,25 @@ pack [source]
 
 ```bash
 # Package current directory
-pack .
+packof .
 
 # Package a specific directory
-pack ./my-project
+packof ./my-project
 
 # Specify output file
-pack . -o my-app.zip
+packof . -o my-app.zip
 
-# Include everything (ignore .gitignore rules)
-pack . --no-gitignore
+# Ignore .gitignore rules
+packof . --no-gitignore
 
 # Include only specific files
-pack . --include "src/**" --include "package.json"
+packof . --include "src/**" --include "package.json"
 
 # Exclude specific files (in addition to .gitignore)
-pack . --exclude "dist/**" --exclude "node_modules/**"
+packof . --exclude "dist/**" --exclude "node_modules/**"
 
 # Combine options
-pack . --include "dist/**" --exclude "**/*.map"
+packof . --include "dist/**" --exclude "**/*.map"
 ```
 
 ## Rule Summary
