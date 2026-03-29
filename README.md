@@ -96,9 +96,4 @@ We are committed to making `packof` the most intuitive and versatile packaging t
 - **Strip Root Option** — Option to include/exclude the root directory in the archive
 - **Progress Indicators** — Visual feedback for large directories
 
-### Distribution & Integration
-- **Prebuilt Binaries** — Standalone executables for major platforms (no Node.js required)
-- **GitHub Action** — Official action for CI/CD workflows
-- **Checksum Generation** — Automatic SHA256 checksums for integrity verification
-
 Have a suggestion? [Open an issue](https://github.com/athif23/packof/issues) — we'd love to hear from you!

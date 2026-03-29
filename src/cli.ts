@@ -3,7 +3,7 @@
 import { cac, CAC } from "cac";
 import { pack } from "./pack.js";
 
-const cli: CAC = cac("pack");
+const cli: CAC = cac("packof");
 
 cli
   .option("-o, --output <file>", "Output zip file path")
