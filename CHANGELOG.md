@@ -7,9 +7,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
-- Added `--ignore-file` option for custom ignore files
+- New features
 
----
+### Changed
+- Changes to existing functionality
+
+### Fixed
+- Bug fixes
+
+### Removed
+- Removed features
+
+## [1.0.3] - 2026-03-29
+
+### Added
+- Added `--ignore-file` option for custom ignore files
 
 ## [1.0.2] - 2026-03-29
 
