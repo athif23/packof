@@ -24,8 +24,8 @@ foldpak [source]
 
 - `-o, --output <file>` — Output zip file path
 - `--no-gitignore` — Don't use .gitignore rules (by default, .gitignore is respected)
-- `--include <glob>` — Include files matching glob (can be repeated)
-- `--exclude <glob>` — Exclude files matching glob (can be repeated)
+- `-i, --include <glob>` — Include files matching glob (can be repeated)
+- `-e, --exclude <glob>` — Exclude files matching glob (can be repeated)
 - `--verbose` — Show detailed output
 
 ### Examples
@@ -44,10 +44,10 @@ foldpak . -o my-app.zip
 foldpak . --no-gitignore
 
 # Include only specific files
-foldpak . --include "src/**" --include "package.json"
+foldpak . -i "src/**" -i "package.json"
 
 # Exclude specific files (in addition to .gitignore)
-foldpak . --exclude "dist/**" --exclude "node_modules/**"
+foldpak . -e "dist/**" -e "node_modules/**"
 
 # Combine options
 foldpak . --include "dist/**" --exclude "**/*.map"
