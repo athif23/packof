@@ -6,7 +6,7 @@ import { discoverFiles } from "./discover-files.js";
 import { filterFiles } from "./filter-files.js";
 import { writeZip } from "./write-zip.js";
 
-export async function pack(options: PackOptions): Promise<PackResult> {
+export async function packof(options: PackOptions): Promise<PackResult> {
   const { source, output, gitignore, include, exclude, verbose } = options;
 
   // Resolve and validate source

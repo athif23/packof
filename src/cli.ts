@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { cac, CAC } from "cac";
-import { pack } from "./pack.js";
+import { packof } from "./packof.js";
 
 const cli: CAC = cac("packof");
 
@@ -29,7 +29,7 @@ cli.command("[source]", "Directory to package (default: .)").action((source) => 
       ? [options.exclude] 
       : [];
 
-  pack({
+  packof({
     source: resolvedSource,
     output: options.output as string | undefined,
     gitignore: options.gitignore as boolean ?? true,
