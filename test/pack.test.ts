@@ -71,7 +71,7 @@ describe("foldpak CLI", () => {
     });
 
     const entries = await extractZipEntries(tempOutput);
-    assert.ok(!entries.includes("dist/build.js"), "should exclude dist/");
+    assert.ok(!entries.some((e) => e.startsWith("ignoredfiles/")), "should exclude ignoredfiles/");
     assert.ok(entries.includes("src/main.ts"), "should include src/");
   });
 
@@ -84,7 +84,7 @@ describe("foldpak CLI", () => {
     });
 
     const entries = await extractZipEntries(tempOutput);
-    assert.ok(entries.includes("dist/build.js"), "should include dist/ when --no-gitignore");
+    assert.ok(entries.some((e) => e.startsWith("ignoredfiles/")), "should include ignoredfiles/ when --no-gitignore");
     assert.ok(entries.includes("src/main.ts"), "should include src/");
   });
 
