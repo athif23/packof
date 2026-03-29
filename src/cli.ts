@@ -8,8 +8,8 @@ const cli: CAC = cac("foldpak");
 cli
   .option("-o, --output <file>", "Output zip file path")
   .option("--no-gitignore", "Ignore .gitignore rules")
-  .option("--include <glob>", "Include files matching glob (can be repeated)")
-  .option("--exclude <glob>", "Exclude files matching glob (can be repeated)")
+  .option("-i, --include <glob>", "Include files matching glob (can be repeated)")
+  .option("-e, --exclude <glob>", "Exclude files matching glob (can be repeated)")
   .option("--verbose", "Show detailed output");
 
 cli.command("[source]", "Directory to package (default: .)").action((source) => {
